@@ -136,6 +136,26 @@ bool isUsernameTaken(const string& username) {
     return false;
 }
 
+bool isValidPassword(const string& password) {
+    // Memeriksa panjang password dan keberadaan huruf dan angka
+    bool hasDigit = false;
+    bool hasLetter = false;
+
+    if (password.length() >= 8) {
+        for (char ch : password) {
+            if (isdigit(ch)) {
+                hasDigit = true;
+            } else if (isalpha(ch)) {
+                hasLetter = true;
+            }
+        }
+
+        return hasDigit && hasLetter;
+    }
+
+    return false;
+}
+
 bool registerUser() {
     User newUser;
     cout << "DAFTAR AKUN\n";
