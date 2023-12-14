@@ -484,15 +484,15 @@ void evaluateHotel(User& user) {
 void displayFoodMenu() {
     system("cls");
     cout << "======= Menu Makanan dan Minuman =======" << endl;
-    cout << "1. Nasi Goreng           - Rp 50,000" << endl;
-    cout << "2. Ayam goreng           - Rp 35,000" << endl;
-    cout << "3. Burger                - Rp 45,000" << endl;
-    cout << "4. Pizza                 - Rp 70,000" << endl;
-    cout << "5. Sate Ayam             - Rp 40,000" << endl;
-    cout << "6. Soto Ayam             - Rp 45,000" << endl;
-    cout << "7. Teh                   - Rp 20,000" << endl;
-    cout << "8. Orange Juice          - Rp 20,000" << endl;
-    cout << "9. Es Campur             - Rp 25,000" << endl;
+    cout << "1. Nasi Goreng           - Rp 50.000" << endl;
+    cout << "2. Ayam goreng           - Rp 35.000" << endl;
+    cout << "3. Burger                - Rp 45.000" << endl;
+    cout << "4. Pizza                 - Rp 70.000" << endl;
+    cout << "5. Sate Ayam             - Rp 40.000" << endl;
+    cout << "6. Soto Ayam             - Rp 45.000" << endl;
+    cout << "7. Teh                   - Rp 20.000" << endl;
+    cout << "8. Orange Juice          - Rp 20.000" << endl;
+    cout << "9. Es Campur             - Rp 25.000" << endl;
     cout << "10. Air Mineral          - Rp 15.000" << endl;
     cout << "0. Selesai" << endl;
     cout << "Pilih (0-10): ";
