@@ -144,22 +144,41 @@ bool registerUser() {
     cin >> newUser.firstName;
     cout << "Nama Belakang      : ";
     cin >> newUser.lastName;
-    cout << "Nomor HP           : ";
-    cin >> newUser.phoneNumber;
-    cout << "Email              : ";
-    cin >> newUser.email;
+    do {
+        cout << "Nomor Telepon      : ";
+        cin >> newUser.phoneNumber;
+
+        if (newUser.phoneNumber.find_first_not_of("0123456789") != string::npos) {
+            cout << "Nomor telepon tidak valid. Harap masukkan hanya karakter numerik.\n\n";
+        }
+    } while (newUser.phoneNumber.find_first_not_of("0123456789") != string::npos);
+
+    do {
+        cout << "Email              : ";
+        cin >> newUser.email;
+
+        if (newUser.email.find('@') == string::npos) {
+            cout << "Format email tidak valid. Harap sertakan simbol '@'.\n\n";
+        }
+    } while (newUser.email.find('@') == string::npos);
 
     do {
         cout << "Username           : ";
         cin >> newUser.username;
 
         if (isUsernameTaken(newUser.username)) {
-            cout << "Username is already taken. Please choose another one.\n";
+            cout << "Username sudah digunakan. Harap pilih yang lain.\n\n";
         }
     } while (isUsernameTaken(newUser.username));
 
-    cout << "Password           : ";
-    cin >> newUser.password;
+    do {
+        cout << "Masukkan password  : ";
+        cin >> newUser.password;
+
+        if (!isValidPassword(newUser.password)) {
+            cout << "Password tidak valid. Pastikan memiliki setidaknya 8 karakter dan mengandung huruf serta angka.\n\n";
+        }
+    } while (!isValidPassword(newUser.password));
     cout << "\n--------------------------------------------------\n";
 
     // Initialize available rooms (for demonstration purposes)
