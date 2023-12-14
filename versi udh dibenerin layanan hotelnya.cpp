@@ -164,6 +164,7 @@ bool registerUser() {
     cin >> newUser.firstName;
     cout << "Nama Belakang      : ";
     cin >> newUser.lastName;
+
     do {
         cout << "Nomor Telepon      : ";
         cin >> newUser.phoneNumber;
