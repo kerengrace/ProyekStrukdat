@@ -164,58 +164,28 @@ bool registerUser() {
     cin >> newUser.firstName;
     cout << "Nama Belakang      : ";
     cin >> newUser.lastName;
-
-    do {
-        cout << "Nomor Telepon      : ";
-        cin >> newUser.phoneNumber;
-
-        if (newUser.phoneNumber.find_first_not_of("0123456789") != string::npos) {
-            cout << "Nomor telepon tidak valid. Harap masukkan hanya karakter numerik.\n\n";
-        }
-    } while (newUser.phoneNumber.find_first_not_of("0123456789") != string::npos);
-
-    do {
-        cout << "Email              : ";
-        cin >> newUser.email;
-
-        if (newUser.email.find('@') == string::npos) {
-            cout << "Format email tidak valid. Harap sertakan simbol '@'.\n\n";
-        }
-    } while (newUser.email.find('@') == string::npos);
+    cout << "Nomor HP           : ";
+    cin >> newUser.phoneNumber;
+    cout << "Email              : ";
+    cin >> newUser.email;
 
     do {
         cout << "Username           : ";
         cin >> newUser.username;
 
         if (isUsernameTaken(newUser.username)) {
-            cout << "Username sudah digunakan. Harap pilih yang lain.\n\n";
+            cout << "Username is already taken. Please choose another one.\n";
         }
     } while (isUsernameTaken(newUser.username));
 
-    do {
-        cout << "Masukkan password  : ";
-        cin >> newUser.password;
-
-        if (!isValidPassword(newUser.password)) {
-            cout << "Password tidak valid. Pastikan memiliki setidaknya 8 karakter dan mengandung huruf serta angka.\n\n";
-        }
-    } while (!isValidPassword(newUser.password));
+    cout << "Password           : ";
+    cin >> newUser.password;
     cout << "\n--------------------------------------------------\n";
 
+    int randomRoomNumber = generateRandomRoomNumber();
+
     // Initialize available rooms (for demonstration purposes)
-    newUser.availableRooms = {
-        {101, "Standard Room", "Single Bed", 150000.0},
-        {102, "Standard Room", "Single Bed", 150000.0},
-        {103, "Standard Room", "Single Bed", 150000.0},
-        {104, "Standard Room", "Single Bed", 150000.0},
-        {105, "Standard Room", "Single Bed", 150000.0},
-        {106, "Deluxe Room", "Double Bed", 200000.0},
-        {107, "Deluxe Room", "Double Bed", 200000.0},
-        {108, "Deluxe Room", "Double Bed", 200000.0},
-        {109, "Deluxe Room", "Double Bed", 200000.0},
-        {110, "Deluxe Room", "Double Bed", 200000.0},
-        // Add more rooms as needed
-    };
+    newUser.availableRooms = displayRoomInformation();
 
     users.push_back(newUser);
     cout << "\nRegistration successful!\n";
@@ -253,77 +223,64 @@ bool loginUser(User& loggedInUser) {
     return false;
 }
 
-void displayReservationDetailsByRoomNumber(const User& user, int roomNumber) {
-    auto it = std::find_if(user.reservations.begin(), user.reservations.end(),
-                           [roomNumber](const Reservation& reservation) {
-                               return reservation.roomNumber == roomNumber;
-                           });
-
-    if (it != user.reservations.end()) {
-        const Reservation& reservation = *it;
-
-        cout << "Detail Pesanan untuk Nomor Kamar " << roomNumber << ":\n";
-        cout << "--------------------------------------------------\n";
-        cout << "Nomor Kamar            : " << reservation.roomNumber << "\n";
-        cout << "Tipe Kamar             : " << reservation.roomType << "\n";
-        cout << "Tipe Tempat Tidur      : " << reservation.bedType << "\n";
-        cout << "Tanggal Check-in       : " << reservation.checkInDate << "\n";
-        cout << "Tanggal Check-out      : " << reservation.checkOutDate << "\n";
-        cout << "Lama menginap          : " << reservation.calculateDuration() << " malam\n";
-
-        // Display Hotel Services for this reservation
-        cout << "Layanan Hotel          :\n";
-        bool hasHotelServices = false;
-        for (const auto& service : user.hotelServices) {
-            if (service.roomNumber == reservation.roomNumber) {
-                cout << " - " << service.serviceName << " - Harga: " << fixed << setprecision(2) << service.price << " rupiah\n";
-                hasHotelServices = true;
-            }
-        }
-
-        if (!hasHotelServices) {
-            cout << " Tidak ada data.\n";
-        }
-
-        // Display Room Facilities for this reservation
-        cout << "Fasilitas Kamar        :\n";
-        bool hasRoomFacilities = false;
-        for (const auto& facility : user.roomFacilities) {
-            if (facility.roomNumber == reservation.roomNumber) {
-                cout << " - " << facility.facilityName << " - Harga: " << fixed << setprecision(2) << facility.price << " rupiah\n";
-                hasRoomFacilities = true;
-            }
-        }
-
-        if (!hasRoomFacilities) {
-            cout << " Tidak ada data.\n";
-        }
-
-        cout << "Total Price            : Rp " << fixed << setprecision(2) << reservation.totalPrice << "\n";
+void displayReservationHistory(const User& user) {
+    if (!user.reservations.empty()) {
+        cout << "Riwayat Pemesanan Anda:\n";
         cout << "--------------------------------------------------\n";
 
-        cout << "\nKembali ke halaman sebelumnya [y]?";
-        char choice;
-        cin >> choice;
-        switch(choice) {
-            case 'y':
-            case 'Y':
-                system("cls");
-                break;
-            default:
-                system("cls");
+        for (const auto& reservation : user.reservations) {
+            cout << "Nomor Kamar            : " << reservation.roomNumber << "\n";
+            cout << "Tipe Kamar             : " << reservation.roomType << "\n";
+            cout << "Tipe Tempat Tidur      : " << reservation.bedType << "\n";
+            cout << "Tanggal Check-in       : " << reservation.checkInDate << "\n";
+            cout << "Tanggal Check-out      : " << reservation.checkOutDate << "\n";
+            cout << "Lama menginap          : " << reservation.calculateDuration() << " malam\n";
+
+            // Display Hotel Services for this reservation
+            cout << "Layanan Hotel          :\n";
+            bool hasHotelServices = false;
+            for (const auto& service : user.hotelServices) {
+                if (service.roomNumber == reservation.roomNumber) {
+                    cout << " - " << service.serviceName << " - Harga: " << fixed << setprecision(2) << service.price << " rupiah\n";
+                    hasHotelServices = true;
+                }
+            }
+
+            if (!hasHotelServices) {
+                cout << " Tidak ada data.\n";
+            }
+
+            // Display Room Facilities for this reservation
+            cout << "Fasilitas Kamar        :\n";
+            bool hasRoomFacilities = false;
+            for (const auto& facility : user.roomFacilities) {
+                if (facility.roomNumber == reservation.roomNumber) {
+                    cout << " - " << facility.facilityName << " - Harga: " << fixed << setprecision(2) << facility.price << " rupiah\n";
+                    hasRoomFacilities = true;
+                }
+            }
+
+            if (!hasRoomFacilities) {
+                cout << " Tidak ada data.\n";
+            }
+
+            cout << "Total Price            : Rp " << fixed << setprecision(2) << reservation.totalPrice << "\n";
+            cout << "--------------------------------------------------\n";
         }
     } else {
-        cout << "Tidak ada pemesanan untuk Nomor Kamar " << roomNumber << ".\n\n";
-        cout << "Loading";
-        Sleep(1000);
-        cout << ".";
-        Sleep(1000);
-        cout << ".";
-        Sleep(1000);
-        cout << ".";
-        Sleep(1500);
-        system("cls");
+        cout << "Anda belum memiliki riwayat pemesanan.\n";
+    }
+
+    cout << "\nKembali ke halaman sebelumnya [y]?";
+    char choice;
+    cin >> choice;
+    switch(choice) {
+        case 'y':
+        case 'Y':
+            system("cls");
+            break;
+        default:
+            system("cls");
     }
 }
 
@@ -1337,34 +1294,108 @@ void showHotelServices(User& loggedInUser) {
 
         switch (serviceChoice) {
             case '1':
+                 Reservation newReservation;
+
+                // Prompt the user for check-in and check-out dates
+                cout << "Tanggal check-in (YYYY-MM-DD)  : ";
+                cin >> newReservation.checkInDate;
+                cout << "Tanggal check-out (YYYY-MM-DD) : ";
+                cin >> newReservation.checkOutDate;
+
+                // Display available rooms after getting check-in and check-out dates
+                loggedInUser.availableRooms = displayRoomInformation();
+
                 if (!loggedInUser.availableRooms.empty()) {
                     int selectedRoomNumber;
-                    cout << "Kamar:\n";
-                    cout << "-----------------------------------------------------------------------------------\n";
-                    cout << "|Room Number|      Room Type      |       Bed Type      |     Price per Night     |\n";
-                    cout << "-----------------------------------------------------------------------------------\n";
-                    for (const auto& room : loggedInUser.availableRooms) {
-                        cout << "|    " << room.roomNumber << "\t " << room.roomType << "\t\t" << room.bedType << "\t\t" << "Rp " << room.pricePerNight << "\t  |\n";
-                        cout << "-----------------------------------------------------------------------------------\n";
-                    }
-                    cout << "\nPesan Nomor Kamar              : ";
-                    cin >> selectedRoomNumber;
+                    bool validRoom = false;
+
+                    do {
+                        // Generate a random room number
+                        selectedRoomNumber = generateRandomRoomNumber();
+
+                        // Check if the room number is valid (exists in available rooms)
+                        auto it = find_if(loggedInUser.availableRooms.begin(), loggedInUser.availableRooms.end(), [selectedRoomNumber](const Room& room) {
+                            return room.roomNumber == selectedRoomNumber;
+                        });
+
+                        validRoom = (it != loggedInUser.availableRooms.end());
+
+                    } while (!validRoom);
 
                     auto it = find_if(loggedInUser.availableRooms.begin(), loggedInUser.availableRooms.end(), [selectedRoomNumber](const Room& room) {
                         return room.roomNumber == selectedRoomNumber;
                     });
 
                     if (it != loggedInUser.availableRooms.end()) {
-                        Reservation newReservation;
-                        newReservation.roomNumber = it->roomNumber;
-                        newReservation.roomType = it->roomType;
-                        newReservation.bedType = it->bedType;
-                        cout << "Tanggal check-in (YYYY-MM-DD)  : ";
-                        cin >> newReservation.checkInDate;
-                        cout << "Tanggal check-out (YYYY-MM-DD) : ";
-                        cin >> newReservation.checkOutDate;
+                        // Display room type options
+                        cout << endl;
+                        cout << "Pilih Jenis Kamar:\n";
+                        cout << "1. Deluxe\n";
+                        cout << "2. Royal\n";
+                        cout << "3. Suite\n";
+                        cout << "Pilihan: ";
+                        int jenisKamarChoice;
+                        cin >> jenisKamarChoice;
 
-                        // Calculate total price based on number of nights
+                        // Validate and set the room type based on user's choice
+                        switch (jenisKamarChoice) {
+                            case 1:
+                                newReservation.roomType = "Deluxe";
+                                break;
+                            case 2:
+                                newReservation.roomType = "Royal";
+                                break;
+                            case 3:
+                                newReservation.roomType = "Suite";
+                                break;
+                            default:
+                                cout << "Pilihan tidak valid.\n";
+                                return;
+                        }
+
+                        // Set the room number from the generated random number
+                        newReservation.roomNumber = selectedRoomNumber;
+
+                        // Display bed type options
+                        cout << endl;
+                        cout << "Pilih Jenis Tempat Tidur:\n";
+                        cout << "1. Double bed\n";
+                        cout << "2. Queen bed\n";
+                        cout << "3. King bed\n";
+                        cout << "Pilihan: ";
+                        int jenisTempatTidurChoice;
+                        cin >> jenisTempatTidurChoice;
+
+                        // Validate and set the bed type based on user's choice
+                        switch (jenisTempatTidurChoice) {
+                            case 1:
+                                newReservation.bedType = "Double bed";
+                                break;
+                            case 2:
+                                newReservation.bedType = "Queen bed";
+                                break;
+                            case 3:
+                                newReservation.bedType = "King bed";
+                                break;
+                            default:
+                                cout << "Pilihan tidak valid.\n";
+                                return;
+                        }
+
+                        string specialRequest;
+                        cout << "\nApakah Anda memiliki permintaan khusus? (y/n) ";
+                        cin >> specialRequest;
+
+                        if (specialRequest == "y" || specialRequest == "Y") {
+                            cout << "Masukkan permintaan khusus Anda: ";
+                            cin.ignore();
+                            getline(cin, specialRequest);
+
+                        // Simpan permintaan khusus ke dalam objek reservasi
+                        newReservation.specialRequest = specialRequest;
+                        }
+
+                        // Calculate total price based on the number of nights
                         int numNights = newReservation.calculateDuration();
                         newReservation.totalPrice = numNights * it->pricePerNight;
 
@@ -1373,6 +1404,7 @@ void showHotelServices(User& loggedInUser) {
                         // Remove the booked room from available rooms
                         loggedInUser.availableRooms.erase(it);
 
+                        // Display reservation details
                         cout << "Berhasil Pesan Kamar!\n";
                         cout << "Loading";
                         Sleep(500);
@@ -1389,6 +1421,8 @@ void showHotelServices(User& loggedInUser) {
                         cout << " Tanggal check-in   : " << newReservation.checkInDate << endl;
                         cout << " Tanggal check-out  : " << newReservation.checkOutDate << endl;
                         cout << " Durasi menginap    : " << numNights << " malam" << endl;
+                        cout << " -----------------------------------------" << endl;
+                        cout << " Nomor Kamar        : " << selectedRoomNumber << endl;
                         cout << "==========================================" << endl << endl;
 
                         newReservation.pembayaran = {};
@@ -1594,11 +1628,7 @@ void showHotelServices(User& loggedInUser) {
                 }
                 break;
             case '2':
-                int roomNumberToDisplay;
-                cout << "Masukkan nomor kamar anda: ";
-                cin >> roomNumberToDisplay;
-                system("cls");
-                displayReservationDetailsByRoomNumber(loggedInUser, roomNumberToDisplay);
+                displayReservationHistory(loggedInUser);
                 break;
             case '3':
                 if (!loggedInUser.reservations.empty()) {
@@ -1675,6 +1705,14 @@ void saveUserDataToFile() {
                  << user.email << " "
                  << user.username << " "
                  << user.password << "\n";
+            file << user.availableRooms.size() << "\n";
+
+            for (const auto& room : user.availableRooms) {
+                file << room.roomNumber << " "
+                     << room.roomType << " "
+                     << room.bedType << " "
+                     << room.pricePerNight << "\n";
+            }
         }
         file.close();
         cout << "User data saved to file.\n";
@@ -1689,20 +1727,18 @@ void loadUserDataFromFile() {
         users.clear(); // Clear existing user data
         User user;
         while (file >> user.firstName >> user.lastName >> user.phoneNumber >> user.email >> user.username >> user.password) {
-            // Initialize available rooms (for demonstration purposes)
-            user.availableRooms = {
-                {101, "Standard Room", "Single Bed", 150000.0},
-                {102, "Standard Room", "Single Bed", 150000.0},
-                {103, "Standard Room", "Single Bed", 150000.0},
-                {104, "Standard Room", "Single Bed", 150000.0},
-                {105, "Standard Room", "Single Bed", 150000.0},
-                {106, "Deluxe Room", "Double Bed", 200000.0},
-                {107, "Deluxe Room", "Double Bed", 200000.0},
-                {108, "Deluxe Room", "Double Bed", 200000.0},
-                {109, "Deluxe Room", "Double Bed", 200000.0},
-                {110, "Deluxe Room", "Double Bed", 200000.0},
-                // Add more rooms as needed
-            };
+            int numRooms;
+            file >> numRooms;
+
+            // Initialize available rooms randomly
+            user.availableRooms.clear();
+            for (int i = 0; i < numRooms; ++i) {
+                Room newRoom;
+                newRoom.roomNumber = generateRandomRoomNumber();
+                file >> newRoom.roomType >> newRoom.bedType >> newRoom.pricePerNight;
+                user.availableRooms.push_back(newRoom);
+            }
+
             users.push_back(user);
         }
         file.close();
@@ -1711,6 +1747,7 @@ void loadUserDataFromFile() {
         cout << "Unable to open file for loading user data.\n";
     }
 }
+
 
 int main() {
     loadUserDataFromFile(); // Load user data from file when the program starts
