@@ -501,15 +501,15 @@ void displayFoodMenu() {
 void displayBreakfastMenu() {
     system("cls");
     cout << "========== Menu Sarapan ==========" << endl;
-    cout << "1. Nasi Goreng Spesial   - Rp 50,000" << endl;
-    cout << "2. Omelette              - Rp 35,000" << endl;
-    cout << "3. Bubur Ayam            - Rp 40,000" << endl;
-    cout << "4. Egg Sandwich          - Rp 35,000" << endl;
-    cout << "5. Pancake               - Rp 35,000" << endl;
-    cout << "6. Cereal                - Rp 30,000" << endl;
-    cout << "7. Kopi                  - Rp 18,000" << endl;
-    cout << "8. Teh                   - Rp 16,000" << endl;
-    cout << "9. Susu                  - Rp 15,000" << endl;
+    cout << "1. Nasi Goreng Spesial   - Rp 50.000" << endl;
+    cout << "2. Omelette              - Rp 35.000" << endl;
+    cout << "3. Bubur Ayam            - Rp 40.000" << endl;
+    cout << "4. Egg Sandwich          - Rp 35.000" << endl;
+    cout << "5. Pancake               - Rp 35.000" << endl;
+    cout << "6. Cereal                - Rp 30.000" << endl;
+    cout << "7. Kopi                  - Rp 18.000" << endl;
+    cout << "8. Teh                   - Rp 16.000" << endl;
+    cout << "9. Susu                  - Rp 15.000" << endl;
     cout << "0. Selesai" << endl;
     cout << "Pilih (0-9): ";
 }
@@ -530,11 +530,11 @@ void displayMinibarMenu() {
 void displayLaundryMenu() {
     system("cls");
     cout << "=============== Laundry Service ===============" << endl;
-    cout << "1. Reguler Laundry                - Rp 25,000/kg" << endl;
-    cout << "2. Dry Cleaning                   - Rp 20,000/kg" << endl;
-    cout << "3. Ironing Sevice                 - Rp 15,000/kg" << endl;
-    cout << "4. Express Service                - Rp 35,000/kg" << endl;
-    cout << "5. Fragrance and Softener         - Rp 10,000/kg" << endl;
+    cout << "1. Reguler Laundry                - Rp 25.000/kg" << endl;
+    cout << "2. Dry Cleaning                   - Rp 20.000/kg" << endl;
+    cout << "3. Ironing Sevice                 - Rp 15.000/kg" << endl;
+    cout << "4. Express Service                - Rp 35.000/kg" << endl;
+    cout << "5. Fragrance and Softener         - Rp 10.000/kg" << endl;
     cout << "0. Selesai" << endl;
     cout << "Pilih (0-6): ";
 }
@@ -542,22 +542,22 @@ void displayLaundryMenu() {
 void displayAdditionalOrderMenu() {
     system("cls");
     cout << "========= Additional Order =========" << endl;
-    cout << "1. Bantal Tambahan      - FREE (Silakan kontak resepsionis)" << endl;
-    cout << "2. Guling Tambahan      - FREE (Silakan kontak resepsionis)" << endl;
-    cout << "3. Alat Mandi Tambahan  - FREE (Silakan kontak resepsionis)" << endl;
+    cout << "1. Bantal Tambahan      - GRATIS (Silakan kontak resepsionis)" << endl;
+    cout << "2. Guling Tambahan      - GRATIS (Silakan kontak resepsionis)" << endl;
+    cout << "3. Alat Mandi Tambahan  - GRATIS (Silakan kontak resepsionis)" << endl;
     cout << "0. Selesai" << endl;
     cout << "Pilih (0-3): ";
 }
 
 void displayCleaningServiceMenu() {
     system("cls");
-    cout << "============== Cleaning Service ==============" << endl;
-    cout << "1. General Cleaning        - FREE (Silakan kontak resepsionis)" << endl;
-    cout << "2. Deep Cleaning           - FREE (Silakan kontak resepsionis)" << endl;
-    cout << "3. Window Cleaning         - FREE (Silakan kontak resepsionis)" << endl;
-    cout << "4. Carpet Cleaning         - FREE (Silakan kontak resepsionis)" << endl;
-    cout << "5. Bed Linen Change        - FREE (Silakan kontak resepsionis)" << endl;
-    cout << "6. Bathroom Sanitization   - FREE (Silakan kontak resepsionis)" << endl;
+    cout << "=================== Cleaning Service ===================" << endl;
+    cout << "1. General Cleaning        - GRATIS (Silakan kontak resepsionis)" << endl;
+    cout << "2. Deep Cleaning           - GRATIS (Silakan kontak resepsionis)" << endl;
+    cout << "3. Window Cleaning         - GRATIS (Silakan kontak resepsionis)" << endl;
+    cout << "4. Carpet Cleaning         - GRATIS (Silakan kontak resepsionis)" << endl;
+    cout << "5. Bed Linen Change        - GRATIS (Silakan kontak resepsionis)" << endl;
+    cout << "6. Bathroom Sanitization   - GRATIS (Silakan kontak resepsionis)" << endl;
     cout << "0. Selesai" << endl;
     cout << "Pilih (0-4): ";
 }
@@ -992,9 +992,9 @@ void displayPoolMenu() {
     cout << "- Terdapat poolside bar untuk pesanan minuman dan makanan." << endl;
     cout << "- Kursi berjemur dan payung tersedia untuk tamu." << endl;
     cout << "\n=========== Menu Kolam Renang ==============" << endl;
-    cout << "1. Tiket Masuk        - FREE" << endl;
-    cout << "2. Sewa Pelampung     - Rp 20,000" << endl;
-    cout << "3. Kelas Renang       - Rp 70,000/jam" << endl;
+    cout << "1. Tiket Masuk        - GRATIS" << endl;
+    cout << "2. Sewa Pelampung     - Rp 20.000" << endl;
+    cout << "3. Kelas Renang       - Rp 70.000/jam" << endl;
     cout << "0. Selesai" << endl;
     cout << "Pilih (0-3): ";
 }
@@ -1013,10 +1013,10 @@ void displayRestaurantMenu() {
 
 void displayFitnessMenu() {
     system("cls");
-    cout << "========= Menu Fitness =========" << endl;
-    cout << "1. Personal Training   - Rp 100,000" << endl;
-    cout << "2. Yoga Class          - Rp 80,000" << endl;
-    cout << "3. Exercise Group      - Rp 70,000" << endl;
+    cout << "=========== Menu Fitness ===========" << endl;
+    cout << "1. Personal Training   - Rp 100.000" << endl;
+    cout << "2. Yoga Class          - Rp 80.000" << endl;
+    cout << "3. Exercise Group      - Rp 70.000" << endl;
     cout << "0. Selesai" << endl;
     cout << "Pilih (0-3): ";
 }
@@ -1024,26 +1024,26 @@ void displayFitnessMenu() {
 void displaySpaMenu() {
     system("cls");
     cout << "=== Menu Pijat dan Spa ===" << endl;
-    cout << "1. Aromatherapy Massage   - Rp 300.000 per sesi" << endl;
-    cout << "2. Hot Stone Massage      - Rp 350.000 per sesi" << endl;
-    cout << "3. Facial Treatment       - Rp 250.000 per sesi" << endl;
+    cout << "1. Aromatherapy Massage                                             - Rp 300.000/sesi" << endl;
+    cout << "2. Hot Stone Massage                                                - Rp 350.000/sesi" << endl;
+    cout << "3. Facial Treatment                                                 - Rp 250.000/sesi" << endl;
     cout << "Paket Spa:" << endl;
-    cout << "4. Relaxation Package (Aromatherapy Massage + Facial Treatment)        - Rp 525.000" << endl;
-    cout << "5. Wellness Package (Hot Stone Massage + Facial Treatment)             - Rp 600.000" << endl;
+    cout << "4. Relaxation Package (Aromatherapy Massage + Facial Treatment)     - Rp 525.000/sesi" << endl;
+    cout << "5. Wellness Package (Hot Stone Massage + Facial Treatment)          - Rp 600.000/sesi" << endl;
     cout << "0. Selesai" << endl;
     cout << "Pilih (0-5): ";
 }
 
 void displayRentalMenu() {
     system("cls");
-    cout << "=== Menu Penyewaan Mobil/Motor/Sepeda ===" << endl;
+    cout << "==== Menu Penyewaan Kendaraaan ====" << endl;
     cout << "Pilihan Penyewaan Kendaraan:" << endl;
-    cout << "1. Mobil  -  Rp 300.000 per hari" << endl;
-    cout << "2. Mobil  -  Rp 50.000 per jam" << endl;
-    cout << "3. Motor  -  Rp 150.000 per hari" << endl;
-    cout << "4. Motor  -  Rp 25.000 per jam" << endl;
-    cout << "5. Sepeda -  Rp 50.000 per hari" << endl;
-    cout << "6. Sepeda -  Rp 10.000 per jam" << endl;
+    cout << "1. Mobil  -  Rp 300.000/hari" << endl;
+    cout << "2. Mobil  -  Rp 50.000/jam" << endl;
+    cout << "3. Motor  -  Rp 150.000/hari" << endl;
+    cout << "4. Motor  -  Rp 25.000/jam" << endl;
+    cout << "5. Sepeda -  Rp 50.000/hari" << endl;
+    cout << "6. Sepeda -  Rp 10.000/jam" << endl;
     cout << "0. Selesai" << endl;
     cout << "Pilih (0-6): ";
 }
