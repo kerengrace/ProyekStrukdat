@@ -483,24 +483,24 @@ void evaluateHotel(User& user) {
 
 void displayFoodMenu() {
     system("cls");
-    cout << "======= Menu Makanan dan Minuman =======" << endl;
-    cout << "1. Nasi Goreng           - Rp 50.000" << endl;
-    cout << "2. Ayam goreng           - Rp 35.000" << endl;
-    cout << "3. Burger                - Rp 45.000" << endl;
-    cout << "4. Pizza                 - Rp 70.000" << endl;
-    cout << "5. Sate Ayam             - Rp 40.000" << endl;
-    cout << "6. Soto Ayam             - Rp 45.000" << endl;
-    cout << "7. Teh                   - Rp 20.000" << endl;
-    cout << "8. Orange Juice          - Rp 20.000" << endl;
-    cout << "9. Es Campur             - Rp 25.000" << endl;
-    cout << "10. Air Mineral          - Rp 15.000" << endl;
+    cout << "====== Menu Makanan dan Minuman ======" << endl;
+    cout << "1. Nasi Goreng             - Rp 50.000" << endl;
+    cout << "2. Ayam goreng             - Rp 35.000" << endl;
+    cout << "3. Burger                  - Rp 45.000" << endl;
+    cout << "4. Pizza                   - Rp 70.000" << endl;
+    cout << "5. Sate Ayam               - Rp 40.000" << endl;
+    cout << "6. Soto Ayam               - Rp 45.000" << endl;
+    cout << "7. Teh                     - Rp 20.000" << endl;
+    cout << "8. Orange Juice            - Rp 20.000" << endl;
+    cout << "9. Es Campur               - Rp 25.000" << endl;
+    cout << "10. Air Mineral            - Rp 15.000" << endl;
     cout << "0. Selesai" << endl;
     cout << "Pilih (0-10): ";
 }
 
 void displayBreakfastMenu() {
     system("cls");
-    cout << "========== Menu Sarapan ==========" << endl;
+    cout << "=========== Menu Sarapan ===========" << endl;
     cout << "1. Nasi Goreng Spesial   - Rp 50.000" << endl;
     cout << "2. Omelette              - Rp 35.000" << endl;
     cout << "3. Bubur Ayam            - Rp 40.000" << endl;
@@ -516,13 +516,13 @@ void displayBreakfastMenu() {
 
 void displayMinibarMenu() {
     system("cls");
-    cout << "===== Menu Minibar dan Snack =====" << endl;
-    cout << "1. Air Mineral           - Rp 15,000" << endl;
-    cout << "2. Soda                  - Rp 20,000" << endl;
-    cout << "3. Snack                 - Rp 15,000" << endl;
-    cout << "4. Coklat                - Rp 12,000" << endl;
-    cout << "5. Keripik               - Rp 15,000" << endl;
-    cout << "6. Permen                - Rp 10,000" << endl;
+    cout << "======= Menu Makanan Ringan =======" << endl;
+    cout << "1. Air Mineral          - Rp 15.000" << endl;
+    cout << "2. Soda                 - Rp 20.000" << endl;
+    cout << "3. Snack                - Rp 15.000" << endl;
+    cout << "4. Coklat               - Rp 12.000" << endl;
+    cout << "5. Keripik              - Rp 15.000" << endl;
+    cout << "6. Permen               - Rp 10.000" << endl;
     cout << "0. Selesai" << endl;
     cout << "Pilih (0-6): ";
 }
@@ -530,11 +530,11 @@ void displayMinibarMenu() {
 void displayLaundryMenu() {
     system("cls");
     cout << "=============== Laundry Service ===============" << endl;
-    cout << "1. Reguler Laundry                - Rp 25.000/kg" << endl;
-    cout << "2. Dry Cleaning                   - Rp 20.000/kg" << endl;
-    cout << "3. Ironing Sevice                 - Rp 15.000/kg" << endl;
-    cout << "4. Express Service                - Rp 35.000/kg" << endl;
-    cout << "5. Fragrance and Softener         - Rp 10.000/kg" << endl;
+    cout << "1. Reguler Laundry               - Rp 25.000/kg" << endl;
+    cout << "2. Dry Cleaning                  - Rp 20.000/kg" << endl;
+    cout << "3. Ironing Sevice                - Rp 15.000/kg" << endl;
+    cout << "4. Express Service               - Rp 35.000/kg" << endl;
+    cout << "5. Fragrance and Softener        - Rp 10.000/kg" << endl;
     cout << "0. Selesai" << endl;
     cout << "Pilih (0-6): ";
 }
@@ -551,7 +551,7 @@ void displayAdditionalOrderMenu() {
 
 void displayCleaningServiceMenu() {
     system("cls");
-    cout << "=================== Cleaning Service ===================" << endl;
+    cout << "======================= Cleaning Service =======================" << endl;
     cout << "1. General Cleaning        - GRATIS (Silakan kontak resepsionis)" << endl;
     cout << "2. Deep Cleaning           - GRATIS (Silakan kontak resepsionis)" << endl;
     cout << "3. Window Cleaning         - GRATIS (Silakan kontak resepsionis)" << endl;
@@ -725,7 +725,7 @@ void layananKamar(vector<Order1>& orders) {
 
         } else if (choice == 3) {
             Order1 order;
-            order.serviceName = "Minibar dan Snack";
+            order.serviceName = "Makanan Ringan";
 
             int minibarChoice;
             do {
@@ -739,7 +739,7 @@ void layananKamar(vector<Order1>& orders) {
 
                 } else if (minibarChoice >= 1 && minibarChoice <= 6) {
                     Order1 minibarOrder;
-                    minibarOrder.serviceName = "Minibar dan Snack";
+                    minibarOrder.serviceName = "Makanan Ringan";
                     cout << "Masukkan jumlah pesanan: ";
                     cin >> minibarOrder.quantity;
 
