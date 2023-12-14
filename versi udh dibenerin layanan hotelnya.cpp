@@ -123,8 +123,6 @@ struct User {
     vector<Room> availableRooms;
 };
 
-using namespace std;
-
 vector<User> users;
 vector<Evaluation> evaluations;
 stack<Evaluation> deletedEvaluations;
