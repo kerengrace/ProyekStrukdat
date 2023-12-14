@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <ctime>
-hai hjkgjhgghfhf
+
 using namespace std;
 
 stack<int> pageStack;
